@@ -14,7 +14,7 @@ import * as NodeStream from "stream";
 import * as fs from "fs";
 import { Promise, Thenable, VoidDeferred } from "ts-promise";
 
-import { Stream, Readable } from "./Stream";
+import { Stream, Readable, Writable } from "./Stream";
 import { swallowErrors, noop } from "./util";
 
 /**
@@ -202,3 +202,19 @@ export function pipeToNodeStream<T>(
 		handleTsStreamError // abort handler
 	);
 }
+
+export function pipeFromNodeStream<T>(
+    nodeReadable: NodeJS.ReadableStream,
+    tsWriteable: Writable<T>) : Promise<void> {
+        return new Promise<void> ((resolve, reject) => {
+            let performRead :() => void = () => {
+                nodeReadable.once('readable', () => {
+                    let chunk: any = nodeReadable.read();
+                    tsWriteable.write(chunk).then(performRead);
+                });
+            };
+            nodeReadable.on('end', resolve);
+            nodeReadable.on('error', reject);
+            performRead();
+        });
+    }
