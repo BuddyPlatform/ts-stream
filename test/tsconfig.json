@@ -19,7 +19,8 @@
     ],
     "files": [
         "../typings/tsd-dev.d.ts",
-        "test-Stream.ts"
+        "test-Stream.ts",
+        "test-Node.ts"
     ],
     "atom": {
         "rewriteTsconfig": true

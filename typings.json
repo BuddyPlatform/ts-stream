@@ -1,0 +1,5 @@
+{
+  "ambientDevDependencies": {
+    "through2": "registry:dt/through2#2.0.0+20160317120654"
+  }
+}
