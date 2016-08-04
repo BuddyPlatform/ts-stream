@@ -6,8 +6,6 @@
  * License: MIT
  */
 
-/// <reference path="../typings/tsd.d.ts" />
-
 import Stream from "../lib/index";
 
 var source = new Stream<number>();

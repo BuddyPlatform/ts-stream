@@ -1,13 +1,13 @@
 {
-  "name": "ts-stream",
-  "version": "0.8.0",
+  "name": "ts-stream-buddy",
+  "version": "0.8.5",
   "description": "Type-safe object streams with seamless support for backpressure, ending, and error handling",
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run lint && npm run build && mocha test/test-*.js",
     "cover": "npm run build && istanbul cover _mocha -- test/test-*.js",
     "prepublish": "npm run test",
-    "build": "tsc -p lib/ && tsc -p test/ && tsc -p examples",
+    "build": "tsc -p .",
     "lint": "tslint -t verbose {src,test,examples}/**/*.ts"
   },
   "repository": {
@@ -39,5 +39,8 @@
     "through2": "^2.0.1",
     "tslint": "^3.5.0",
     "typescript": "1.8.2"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.buddyplatform.com/repository/npm-hosted/"
   }
 }

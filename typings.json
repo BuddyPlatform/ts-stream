@@ -1,5 +1,10 @@
 {
-  "ambientDevDependencies": {
+  "name": "ts-stream",
+  "dependencies": {},
+  "globalDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20160601211834",
+    "mocha": "registry:dt/mocha#2.2.5+20160720003353",
+    "node": "registry:dt/node#6.0.0+20160802155038",
     "through2": "registry:dt/through2#2.0.0+20160317120654"
   }
 }

@@ -6,8 +6,6 @@
  * License: MIT
  */
 
-/// <reference path="../typings/node/node.d.ts" />
-
 "use strict";
 
 import * as NodeStream from "stream";
@@ -15,7 +13,7 @@ import * as fs from "fs";
 import { Promise, Thenable, VoidDeferred } from "ts-promise";
 
 import { Stream, Readable, Writable } from "./Stream";
-import { swallowErrors, noop } from "./util";
+import { swallowErrors } from "./util";
 
 /**
  * Convert ts-stream into a Node.JS Readable instance.
@@ -204,17 +202,17 @@ export function pipeToNodeStream<T>(
 }
 
 export function pipeFromNodeStream<T>(
-    nodeReadable: NodeJS.ReadableStream,
-    tsWriteable: Writable<T>) : Promise<void> {
-        return new Promise<void> ((resolve, reject) => {
-            let performRead :() => void = () => {
-                nodeReadable.once('readable', () => {
-                    let chunk: any = nodeReadable.read();
-                    tsWriteable.write(chunk).then(performRead);
-                });
-            };
-            nodeReadable.on('end', resolve);
-            nodeReadable.on('error', reject);
-            performRead();
-        });
-    }
+		nodeReadable: NodeJS.ReadableStream,
+		tsWriteable: Writable<T>) : Promise<void> {
+				return new Promise<void> ((resolve, reject) => {
+						let performRead :() => void = () => {
+								nodeReadable.once('readable', () => {
+										let chunk: any = nodeReadable.read();
+										tsWriteable.write(chunk).then(performRead);
+								});
+						};
+						nodeReadable.on('end', resolve);
+						nodeReadable.on('error', reject);
+						performRead();
+				});
+		}

@@ -9,5 +9,8 @@
 /.gitignore
 /.npmignore
 /.travis.yml
+/.tsconfig.json
 
-tsconfig.json
+*.js.map
+*.ts
+!*.d.ts

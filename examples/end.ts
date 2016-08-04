@@ -6,8 +6,6 @@
  * License: MIT
  */
 
-/// <reference path="../typings/tsd.d.ts" />
-
 import Stream from "../lib/index";
 
 // Stream.from() automatically ends the stream when all values have been written.
